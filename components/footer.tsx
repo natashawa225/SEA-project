@@ -4,86 +4,70 @@ import { Utensils, Phone, Mail, MapPin } from "lucide-react"
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid gap-10 md:grid-cols-4">
+          {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Utensils className="h-6 w-6 text-emerald-400" />
-              <span className="text-xl font-bold">SEA Catering</span>
+            <div className="flex items-center space-x-3">
+              <Utensils className="h-7 w-7 text-emerald-400" />
+              <span className="text-2xl font-bold tracking-wide">SEA Catering</span>
             </div>
-            <p className="text-gray-400">
-              Healthy Meals, Anytime, Anywhere. Indonesia's premier meal delivery service.
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+              Healthy Meals, Anytime, Anywhere. Indonesia's premier healthy meal delivery service, crafted for your lifestyle.
             </p>
           </div>
 
+          {/* Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <Link href="/" className="hover:text-white transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/menu" className="hover:text-white transition-colors">
-                  Menu
-                </Link>
-              </li>
-              <li>
-                <Link href="/subscription" className="hover:text-white transition-colors">
-                  Subscription
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
+            <h3 className="text-lg font-semibold mb-4 text-white">Quick Links</h3>
+            <ul className="space-y-3 text-sm text-gray-400">
+              {[
+                { label: "Home", href: "/" },
+                { label: "Menu", href: "/menu" },
+                { label: "Subscription", href: "/subscription" },
+                { label: "Contact", href: "/contact" },
+              ].map((link, idx) => (
+                <li key={idx}>
+                  <Link href={link.href} className="hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Contact Info */}
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <Link href="/faq" className="hover:text-white transition-colors">
-                  FAQ
-                </Link>
+            <h3 className="text-lg font-semibold mb-4 text-white">Contact Info</h3>
+            <ul className="space-y-3 text-sm text-gray-400">
+              <li className="flex items-center gap-3">
+                <Phone className="h-5 w-5 text-emerald-400" />
+                <span>0812-3456-789</span>
               </li>
-              <li>
-                <Link href="/terms" className="hover:text-white transition-colors">
-                  Terms of Service
-                </Link>
+              <li className="flex items-center gap-3">
+                <Mail className="h-5 w-5 text-emerald-400" />
+                <span>natasha.atmadja2@gmail.com</span>
               </li>
-              <li>
-                <Link href="/privacy" className="hover:text-white transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-4">Contact Info</h3>
-            <div className="space-y-2 text-gray-400">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>08123456789</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>info@seacatering.com</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
+              <li className="flex items-center gap-3">
+                <MapPin className="h-5 w-5 text-emerald-400" />
                 <span>Indonesia</span>
-              </div>
-            </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Optional: Newsletter or Social */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-white">Stay Connected</h3>
+            <p className="text-sm text-gray-400 mb-4">
+              Follow us for updates, promotions, and health tips!
+            </p>
+            {/* You could place social icons here if available */}
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} SEA Catering. All rights reserved.</p>
+        {/* Divider & Bottom Text */}
+        <div className="mt-12 border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} SEA Catering. All rights reserved.
         </div>
       </div>
     </footer>

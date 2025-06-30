@@ -2,10 +2,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Utensils, MapPin, Clock, Shield, Star, Phone, User } from "lucide-react"
+import { TestimonialsCarousel } from "@/components/testimonials-carousel"
 import Link from "next/link"
 import Image from "next/image"
 
+
 export default function HomePage() {
+
   const features = [
     {
       icon: <Utensils className="h-6 w-6" />,
@@ -32,10 +35,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-50 to-emerald-100 py-20 px-4">
+      <section className="min-h-screen flex items-center relative bg-gradient-to-br from-green-50 to-emerald-100 py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+            <div className="space-y-8 items-middle">
               <div className="space-y-4">
                 <Badge variant="secondary" className="text-sm font-medium">
                   🌟 Indonesia's #1 Healthy Meal Service
@@ -43,22 +46,32 @@ export default function HomePage() {
                 <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">SEA Catering</h1>
                 <p className="text-xl md:text-2xl text-emerald-600 font-semibold">"Healthy Meals, Anytime, Anywhere"</p>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Welcome to SEA Catering, Indonesia's premier customizable healthy meal service. We deliver nutritious,
+                  Welcome to SEA Catering, Indonesia's customizable healthy meal service. We deliver nutritious,
                   delicious meals across the nation, making healthy eating convenient and accessible for everyone.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
                   <Link href="/subscription">Start Your Journey</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/menu">View Meal Plans</Link>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-emerald-600 text-emerald-600 bg-transparent hover:bg-emerald-600 hover:text-white transition-colors duration-300"
+                >
+                  <Link href="/menu">🍽 View Meal Plans</Link>
                 </Button>
+
               </div>
             </div>
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=500&width=500"
+                src="/home.jpg?height=500&width=500"
                 alt="Healthy meal delivery"
                 width={500}
                 height={500}
@@ -159,6 +172,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
             <p className="text-lg text-gray-600">Join thousands of satisfied customers across Indonesia</p>
           </div>
+          <TestimonialsCarousel />
         </div>
       </section>
 

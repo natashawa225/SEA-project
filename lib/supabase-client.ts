@@ -1,13 +1,17 @@
 import { createClient } from "@supabase/supabase-js"
 
-// Use placeholder values for demo purposes when environment variables are not available
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://your-project.supabase.co"
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "your-anon-key"
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY  as string
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Auth functions
 export const signUp = async (email: string, password: string, fullName: string) => {
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("❌ Missing Supabase environment variables!")
+  }
+
   try {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -28,22 +32,30 @@ export const signUp = async (email: string, password: string, fullName: string) 
 }
 
 export const signIn = async (email: string, password: string) => {
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
 
-    if (error) throw error
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("❌ Missing Supabase environment variables!")
+  }
+
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (error) throw new Error(error.message)  
     return data
   } catch (error) {
-    console.error("Sign in error:", error)
-    throw new Error("Authentication service is not configured. Please set up Supabase integration.")
+    console.error("❌ Sign in error:", error)
+    throw error  
   }
 }
 
+
 // Subscription functions
 export const createSubscription = async (subscriptionData: any) => {
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("❌ Missing Supabase environment variables!")
+  }
+
   try {
     const { data, error } = await supabase.from("subscriptions").insert([subscriptionData]).select()
 
@@ -56,6 +68,11 @@ export const createSubscription = async (subscriptionData: any) => {
 }
 
 export const getUserSubscriptions = async (userId: string) => {
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("❌ Missing Supabase environment variables!")
+  }
+
   try {
     const { data, error } = await supabase
       .from("subscriptions")
@@ -72,6 +89,11 @@ export const getUserSubscriptions = async (userId: string) => {
 }
 
 export const updateSubscriptionStatus = async (subscriptionId: string, status: string) => {
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("❌ Missing Supabase environment variables!")
+  }
+
   try {
     const { data, error } = await supabase.from("subscriptions").update({ status }).eq("id", subscriptionId).select()
 
@@ -85,6 +107,10 @@ export const updateSubscriptionStatus = async (subscriptionId: string, status: s
 
 // Testimonial functions
 export const createTestimonial = async (testimonialData: any) => {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("❌ Missing Supabase environment variables!")
+  }
+
   try {
     const { data, error } = await supabase.from("testimonials").insert([testimonialData]).select()
 
@@ -98,6 +124,10 @@ export const createTestimonial = async (testimonialData: any) => {
 
 // Admin functions
 export const getAdminMetrics = async (startDate: string, endDate: string) => {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error("❌ Missing Supabase environment variables!")
+  }
+
   try {
     // Get new subscriptions
     const { data: newSubs, error: newSubsError } = await supabase
