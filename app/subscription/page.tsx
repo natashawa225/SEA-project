@@ -347,6 +347,7 @@ export default function SubscriptionPage() {
             </Card>
           </div>
 
+          {/* Total Price = Plan Price × Meal Types × Delivery Days × 4.3 */}
           {/* Price Calculator */}
           <div className="lg:col-span-1">
             <Card className="sticky top-24">
