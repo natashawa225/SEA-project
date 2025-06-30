@@ -30,3 +30,10 @@ Create a project at supabase.com
 
 run locally: npm run dev
 
+User account:
+admin-email@gmail.com
+Adminpassword123.
+
+Admin account
+user@gmail.com
+Userpassword123.
